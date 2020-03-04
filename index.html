@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=yes">
+        <title>Scale Party</title>
+        <link rel="stylesheet" href="scales.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <p>
+                    Scale <select id="scalePicker" onchange="showScale()">
+                        <option value="0">Ionian (Major)</option>
+                        <option value="1">Dorian</option>
+                        <option value="2">Phrygian</option>
+                        <option value="3">Lydian</option>
+                        <option value="4">Mixolydian</option>
+                        <option value="5">Aeolian</option>
+                        <option value="6">Locrian</option>
+                        <option value="7">Pentatonic</option>
+                        <option value="8">Blues</option>
+                        <option value="9">Melodic</option>
+                        <option value="10">Harmonic</option>
+                        <option value="11">Whole Tone</option>
+                        <option value="12">Diminished</option>
+                    </select>
+                    Key <select id="keyPicker" onchange="showScale()">
+                        <option value="0">E</option>
+                        <option value="1">F</option>
+                        <option value="2">F#</option>
+                        <option value="3">G</option>
+                        <option value="4">G#</option>
+                        <option value="5">A</option>
+                        <option value="6">A#</option>
+                        <option value="7">B</option>
+                        <option value="8">C</option>
+                        <option value="9">C#</option>
+                        <option value="10">D</option>
+                        <option value="11">D#</option>
+                    </select>
+                    <input type="checkbox" id="minorFlag" onchange="showScale()"><label for="minorFlag">Make Minor</label>
+                </p>
+                <p>
+                    FreeForm
+                    <input type="checkbox" id="epitchC" value="0" onchange="showFreeForm()"><label for="epitchC">E</label>
+                    <input type="checkbox" id="fpitchC" value="1" onchange="showFreeForm()"><label for="fpitchC">F</label>
+                    <input type="checkbox" id="fsharppitchC" value="2" onchange="showFreeForm()"><label for="fsharppitchC">F#</label>
+                    <input type="checkbox" id="gpitchC" value="3" onchange="showFreeForm()"><label for="gpitchC">G</label>
+                    <input type="checkbox" id="gsharppitchC" value="4" onchange="showFreeForm()"><label for="gsharppitchC">G#</label>
+                    <input type="checkbox" id="apitchC" value="5" onchange="showFreeForm()"><label for="apitchC">A</label>
+                    <input type="checkbox" id="asharppitchC" value="6" onchange="showFreeForm()"><label for="asharppitchC">A#</label>
+                    <input type="checkbox" id="bpitchC" value="7" onchange="showFreeForm()"><label for="bpitchC">B</label>
+                    <input type="checkbox" id="cpitchC" value="8" onchange="showFreeForm()"><label for="cpitchC">C</label>
+                    <input type="checkbox" id="csharppitchC" value="9" onchange="showFreeForm()"><label for="csharppitchC">C#</label>
+                    <input type="checkbox" id="dpitchC" value="10" onchange="showFreeForm()"><label for="dpitchC">D</label>
+                    <input type="checkbox" id="dsharppitchC" value="11" onchange="showFreeForm()"><label for="dsharppitchC">D#</label>
+                </p>
+            </div>
+            <div class="main">
+                <svg id="draw" height="200" width="850">
+                    <!-- Strings -->
+                    <line x1="15" y1="20" x2="800" y2="20" style="stroke:rgb(166,160,159);stroke-width:2" />
+                    <line x1="15" y1="50" x2="800" y2="50" style="stroke:rgb(166,160,159);stroke-width:2" />
+                    <line x1="15" y1="80" x2="800" y2="80" style="stroke:rgb(166,160,159);stroke-width:2" />
+                    <line x1="15" y1="110" x2="800" y2="110" style="stroke:rgb(166,160,159);stroke-width:2" />
+                    <line x1="15" y1="140" x2="800" y2="140" style="stroke:rgb(166,160,159);stroke-width:2" />
+                    <line x1="15" y1="170" x2="800" y2="170" style="stroke:rgb(166,160,159);stroke-width:2" />
+                    <!-- Frets -->
+                    <line x1="15" y1="0" x2="15" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="18" y1="0" x2="18" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="60" y1="0" x2="60" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="100" y1="0" x2="100" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="140" y1="0" x2="140" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="180" y1="0" x2="180" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="220" y1="0" x2="220" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="260" y1="0" x2="260" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="300" y1="0" x2="300" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="340" y1="0" x2="340" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="380" y1="0" x2="380" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="420" y1="0" x2="420" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="460" y1="0" x2="460" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="500" y1="0" x2="500" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="540" y1="0" x2="540" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="580" y1="0" x2="580" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="620" y1="0" x2="620" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="660" y1="0" x2="660" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <line x1="700" y1="0" x2="700" y2="190" style="stroke:rgb(66,60,59);stroke-width:2" />
+                    <!-- Inlays -->
+                    <circle cx="120" cy="95" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="200" cy="95" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="280" cy="95" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="360" cy="95" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="480" cy="65" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="480" cy="125" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="600" cy="95" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <circle cx="680" cy="95" r="5" stroke="black" stroke-width="1" fill="black" />
+                    <!-- Low E -->
+                    <circle class="epitch" cx="17" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="60" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="100" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="140" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="180" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="220" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="260" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="300" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="340" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="380" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="420" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="460" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="500" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="540" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="580" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="620" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="660" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="700" cy="170" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <!-- A -->
+                    <circle class="apitch" cx="17" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="60" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="100" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="140" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="180" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="220" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="260" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="300" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="340" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="380" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="420" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="460" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="500" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="540" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="580" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="620" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="660" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="700" cy="140" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <!-- D -->
+                    <circle class="dpitch" cx="17" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="60" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="100" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="140" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="180" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="220" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="260" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="300" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="340" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="380" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="420" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="460" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="500" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="540" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="580" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="620" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="660" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="700" cy="110" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <!-- G -->
+                    <circle class="gpitch" cx="17" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="60" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="100" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="140" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="180" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="220" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="260" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="300" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="340" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="380" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="420" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="460" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="500" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="540" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="580" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="620" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="660" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="700" cy="80" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <!-- B -->
+                    <circle class="bpitch" cx="17" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="60" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="100" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="140" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="180" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="220" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="260" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="300" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="340" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="380" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="420" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="460" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="500" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="540" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="580" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="620" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="660" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="700" cy="50" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <!-- High E -->
+                    <circle class="epitch" cx="17" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="60" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="100" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="140" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="180" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="220" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="asharppitch" cx="260" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="bpitch" cx="300" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="cpitch" cx="340" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="csharppitch" cx="380" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dpitch" cx="420" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="dsharppitch" cx="460" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="epitch" cx="500" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fpitch" cx="540" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="fsharppitch" cx="580" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gpitch" cx="620" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="gsharppitch" cx="660" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+                    <circle class="apitch" cx="700" cy="20" r="10" stroke="black" stroke-width="2" fill="lightskyblue" />
+
+                </svg>
+            </div>
+          </div>
+          <script src="scales.js"></script>
+    </body>
+</html>
