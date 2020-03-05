@@ -17,11 +17,21 @@ var scales = [
     [0, 2, 3, 5, 7, 8, 10],    // Aeolian
     [0, 1, 3, 5, 6, 8, 10],    // Locrian
     [0, 2, 4, 7, 9],           // Pentatonic
-    [0, 3, 5, 6, 7, 10],       // Blues
+    [0, 2, 3, 4, 7, 9],        // Blues
     [0, 2, 4, 6, 8, 9, 11],    // Melodic
     [0, 2, 4, 5, 8, 9, 11],    // Harmonic
     [0, 2, 4, 6, 8, 10],       // Whole Tone
     [0, 1, 3, 4, 6, 7, 9, 10], // Diminished
+    [0, 2, 4, 5, 6, 8, 10],    // Arabian
+    [0, 1, 4, 5, 7, 8, 11],    // Byzantine
+    [0, 3, 4, 6, 7, 9, 10],    // Hungarian
+    [0, 1, 4, 5, 6, 8, 11],    // Persian
+    [0, 1, 3, 5, 7, 8, 11],    // Neapolitan Minor
+    [0, 1, 4, 6, 7, 10, 11],   // Enigmatic
+    [0, 2, 3, 6, 7, 9, 11],    // Lydian Diminished
+    [0, 2, 3, 7, 9, 11],       // Hawaiian
+    [0, 1, 3, 7, 8],           // Balinese
+    [0, 1, 5, 7, 8]            // Japanese
 ];
 
 function getRoot() {
